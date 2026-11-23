@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CalendarDays, Users, Mail, User, Check, Loader2, Send } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 
 const roomOptions = [
   'Tide Whisper Suite',
@@ -42,6 +42,16 @@ export default function Booking() {
     }
     setStatus('loading');
     setError('');
+
+    // When Supabase isn't configured (e.g. a static GitHub Pages build with
+    // no env vars), skip the database write and treat the request as a demo
+    // submission so the page never breaks.
+    if (!isSupabaseConfigured) {
+      await new Promise((r) => setTimeout(r, 700));
+      setStatus('success');
+      return;
+    }
+
     const { error: insertError } = await supabase.from('bookings').insert({
       name: form.name,
       email: form.email,
