@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ink-950 text-sand-50 font-sans antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-gold-400/30 text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .glass {
+    background: rgba(10, 43, 60, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 168, 87, 0.18);
+  }
+  .gold-gradient-text {
+    background: linear-gradient(120deg, #f5e9cf 0%, #d4a857 45%, #a4772f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hairline {
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 87, 0.6), transparent);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #04141d;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0d7faa, #0a2b3c);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a857;
+}
